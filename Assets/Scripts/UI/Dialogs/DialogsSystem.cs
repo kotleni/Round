@@ -132,6 +132,7 @@ public class DialogsSystem : MonoBehaviour
         
         UpdateDialogPos();
         
+        PlayerController.instance.ResetVelocity();
         SmoothCamera.instance.SetTarget(caller.transform);
     }
 

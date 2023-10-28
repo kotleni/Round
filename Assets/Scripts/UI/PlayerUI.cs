@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+    private void Start()
+    {
+        GameSettings.Load();
+    }
+
     private void OnGUI()
     {
         PlayerController pl = PlayerController.instance;

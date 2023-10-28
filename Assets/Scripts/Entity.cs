@@ -174,6 +174,11 @@ public abstract class Entity : MonoBehaviour
         _health += value;
     }
 
+    public void ResetVelocity()
+    {
+        _rigidbody.velocity = Vector2.zero;
+    }
+
     public float GetHealth()
     {
         return _health;
