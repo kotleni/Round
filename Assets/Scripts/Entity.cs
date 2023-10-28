@@ -130,7 +130,9 @@ public abstract class Entity : MonoBehaviour
 
     public void Hit(float damage, GameObject from = null)
     {
-        _health -= damage;
+        SetHealth(GetHealth() - damage);
+        Debug.Log($"Damage {damage} taken to {gameObject.name} from {from.name}. (Now HP is {GetHealth()})");
+        
         if (_health <= 0f)
         {
             OnDie();
@@ -187,7 +189,7 @@ public abstract class Entity : MonoBehaviour
 
     public void SetHealth(float value)
     {
-        _health += Math.Min(value, _maxHealth);
+        _health = Math.Min(value, _maxHealth);
     }
 
     public void AddHealth(float value)

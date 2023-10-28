@@ -27,7 +27,7 @@ public class PlayerUI : MonoBehaviour
     private void UpdateHearts(float health, float maxHealth)
     {
         // Ensure health is within valid bounds
-        health = Mathf.Clamp(health, 0f, maxHealth);
+        //health = Mathf.Clamp(health, 0f, maxHealth);
     
         float healthPercentage = health / maxHealth;
         float magic = 1.0f / 7;
