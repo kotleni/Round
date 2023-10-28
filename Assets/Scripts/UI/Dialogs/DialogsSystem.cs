@@ -18,6 +18,11 @@ public class DialogsSystem : MonoBehaviour
     private Dialog currentDialog = null;
     private List<GameObject> createdButtons = new List<GameObject>();
     
+    private Action<Dialog> defaultCallback = dialog =>
+    {
+        DialogsSystem.instance.CloseDialog();
+    };
+    
     public static DialogsSystem instance;
     
     public DialogsSystem()
@@ -39,14 +44,33 @@ public class DialogsSystem : MonoBehaviour
                 Action<Dialog> callback = dialog =>
                 {
                     CloseDialog();
+                    OpenDialogByName(caller, "frog_where");
                 };
                 dialog = new Dialog(
                     "Denis a Frog", 
                     "Hello! How did you end up here? Ah... it doesn't matter.", 
                     new []
                     {
-                        new DialogButton("Hello.", callback), 
-                        new DialogButton("Bye.", callback), 
+                        new DialogButton("Where i am?.", callback), 
+                        new DialogButton("Bye.", defaultCallback), 
+                    });
+                break;
+            case "frog_where":
+                dialog = new Dialog(
+                    "Denis a Frog", 
+                    "You are on our island.", 
+                    new []
+                    {
+                        new DialogButton("Okay...", defaultCallback), 
+                    });
+                break;
+            case "slime_hello":
+                dialog = new Dialog(
+                    "Slime", 
+                    "*slurping*", 
+                    new []
+                    {
+                        new DialogButton("Oh...", defaultCallback), 
                     });
                 break;
         }
