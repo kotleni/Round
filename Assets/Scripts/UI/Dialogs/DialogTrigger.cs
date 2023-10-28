@@ -6,18 +6,20 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class DialogTrigger : MonoBehaviour
 {
+    [SerializeField] private BoxCollider2D boxCollider2D;
     [SerializeField] private string dialogName;
-    
-    private bool isActivated = false;
+    [SerializeField] private bool removeAfterUse = true;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(isActivated) return;
-
         if (other.CompareTag("Player"))
         {
             DialogsSystem.instance.OpenDialogByName(gameObject, dialogName);
-            isActivated = true;
+            if (removeAfterUse)
+            {
+                Destroy(boxCollider2D);
+                Destroy(this);
+            }
         }
     }
 }

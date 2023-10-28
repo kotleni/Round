@@ -6,4 +6,5 @@ public static class GameSettings
 {
     public static bool isDisableSmoothCamera = false;
     public static bool isDisableWaterWaves = false;
+    public static float cameraSize = 10f;
 }

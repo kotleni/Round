@@ -7416,7 +7416,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fe0052f8d1d6443bdf076972849327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider2D: {fileID: 786299772}
   dialogName: frog_hello
+  removeAfterUse: 1
 --- !u!61 &786299772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -75692,7 +75694,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fe0052f8d1d6443bdf076972849327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider2D: {fileID: 1937165045}
   dialogName: slime_hello
+  removeAfterUse: 1
 --- !u!61 &1937165045
 BoxCollider2D:
   m_ObjectHideFlags: 0

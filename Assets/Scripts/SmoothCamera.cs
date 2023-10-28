@@ -87,6 +87,8 @@ public class SmoothCamera : MonoBehaviour
     
     void Update()
     {
+        mainCamera.orthographicSize = GameSettings.cameraSize;
+        
         if(GameSettings.isDisableSmoothCamera)
             UpdateQuickCamera();
         else
