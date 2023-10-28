@@ -169,9 +169,14 @@ public abstract class Entity : MonoBehaviour
         _isDrawXFlipped = isFlipped;
     }
 
+    public void SetHealth(float value)
+    {
+        _health += Math.Min(value, _maxHealth);
+    }
+
     public void AddHealth(float value)
     {
-        _health += value;
+        SetHealth(GetHealth() + value);
     }
 
     public void ResetVelocity()
