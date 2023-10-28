@@ -54,6 +54,11 @@ public class DialogsSystem : MonoBehaviour
             OpenDialog(caller, dialog);
     }
 
+    public bool IsDialogOpened()
+    {
+        return currentDialog != null;
+    }
+
     private GameObject CreateButton(Dialog dialog, DialogButton dialogButton)
     {
         dialogButtonRef.SetActive(true);

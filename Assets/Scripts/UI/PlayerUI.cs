@@ -9,6 +9,10 @@ public class PlayerUI : MonoBehaviour
     {
         PlayerController pl = PlayerController.instance;
         
+        // Remove all additional UI if player in dialog
+        if(pl.IsInDialog())
+            return;
+        
         // Draw health bar in top-left side
         
         float barWidth = 100f;

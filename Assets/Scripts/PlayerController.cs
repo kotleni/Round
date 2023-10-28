@@ -40,7 +40,9 @@ public class PlayerController : Entity
         bool isGrounded = IsGrounded();
         bool isInWater = IsInWater();
 
-        if (isInWater)
+        if (IsInDialog())
+            state = State.IDLE;
+        else if (isInWater)
             state = State.SWIM;
         else if (isGrounded)
         {
@@ -70,18 +72,28 @@ public class PlayerController : Entity
         // }
         
         UpdateState(state);
-        
-        MoveHorizontal(forceMove == 0f ? Input.GetAxis("Horizontal") : forceMove);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            ControlJump();
+        if (!IsInDialog())
+        {
+            MoveHorizontal(forceMove == 0f ? Input.GetAxis("Horizontal") : forceMove);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+                ControlJump();
         
-        if(Input.GetKeyDown(KeyCode.F))
-            ControlDash();
+            if(Input.GetKeyDown(KeyCode.F))
+                ControlDash();
+        }
+    }
+
+    public bool IsInDialog()
+    {
+        return DialogsSystem.instance.IsDialogOpened();
     }
     
     public void ControlJump()
     {
+        if (IsInDialog()) return;
+        
         if(IsInWater())
             ImpulsedSwimUp();
         else if(IsGrounded())
@@ -90,21 +102,29 @@ public class PlayerController : Entity
 
     public void ControlRight()
     {
+        if (IsInDialog()) return;
+        
         forceMove = 1f;
     }
     
     public void ControlLeft()
     {
+        if (IsInDialog()) return;
+        
         forceMove = -1f;
     }
     
     public void ControlMovementRelease()
     {
+        if (IsInDialog()) return;
+        
         forceMove = 0f;
     }
     
     public void ControlDash()
     {
+        if (IsInDialog()) return;
+        
         Dash((isTurnRight ? Vector2.right : Vector2.left));
     }
 }
