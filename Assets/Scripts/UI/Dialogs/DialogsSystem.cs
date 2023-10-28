@@ -15,6 +15,7 @@ public class DialogsSystem : MonoBehaviour
     [SerializeField] private GameObject dialogButtonRef;
 
     private Dialog currentDialog = null;
+    private List<GameObject> createdButtons = new List<GameObject>();
     
     public static DialogsSystem instance;
     
@@ -54,12 +55,16 @@ public class DialogsSystem : MonoBehaviour
 
     private GameObject CreateButton(Dialog dialog, DialogButton dialogButton)
     {
+        dialogButtonRef.SetActive(true);
+        
         GameObject button = Instantiate(dialogButtonRef);
-        button.SetActive(true);
         Button button2 = button.GetComponent<Button>();
+        
         TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
         text.text = dialogButton.title;
         button2.onClick.AddListener(() => dialogButton.clickAction.Invoke(dialog));
+        
+        dialogButtonRef.SetActive(false);
         return button;
     }
 
@@ -75,6 +80,16 @@ public class DialogsSystem : MonoBehaviour
         {
             GameObject buttonObj = CreateButton(dialog, button);
             buttonObj.transform.SetParent(dialogContainer.transform);
+            buttonObj.transform.SetAsLastSibling();
+            
+            // Store created button
+            createdButtons.Add(buttonObj);
+            
+            // MARK: Unity UI for all new items in container set scale to 1.4
+            // MARK: It's bug, or i so stupid :)
+            // Reset UI element scale
+            RectTransform rectTransform = buttonObj.GetComponent<RectTransform>();
+            rectTransform.localScale = Vector3.one;
         }
         
         SmoothCamera.instance.SetTarget(caller.transform);
@@ -85,5 +100,11 @@ public class DialogsSystem : MonoBehaviour
         SmoothCamera.instance.ResetTarget();
         dialogPanel.gameObject.SetActive(false);
         currentDialog = null;
+
+        // Remove all created buttons
+        foreach (var button in createdButtons)
+        {
+            Destroy(button);
+        }
     }
 }
