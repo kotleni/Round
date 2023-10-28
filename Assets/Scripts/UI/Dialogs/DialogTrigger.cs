@@ -17,8 +17,8 @@ public class DialogTrigger : MonoBehaviour
             DialogsSystem.instance.OpenDialogByName(gameObject, dialogName);
             if (removeAfterUse)
             {
-                Destroy(boxCollider2D);
                 Destroy(this);
+                Destroy(boxCollider2D);
             }
         }
     }
