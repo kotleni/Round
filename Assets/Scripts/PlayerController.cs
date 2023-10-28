@@ -116,8 +116,6 @@ public class PlayerController : Entity
     
     public void ControlMovementRelease()
     {
-        if (IsInDialog()) return;
-        
         forceMove = 0f;
     }
     
