@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class DialogsSystem : MonoBehaviour
 {
-    [SerializeField] private Image dialogPanel;
+    [SerializeField] private RectTransform canvasContainer;
+    [SerializeField] private GameObject dialogPanel;
     [SerializeField] private TextMeshProUGUI dialogTitle;
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private GameObject dialogContainer;
@@ -68,6 +69,14 @@ public class DialogsSystem : MonoBehaviour
         return button;
     }
 
+    private void UpdateDialogPos()
+    {
+        // FIXME: it's not working normally, put pin to top corner
+        RectTransform rectTransform = dialogPanel.GetComponent<RectTransform>();
+        //float y = canvasContainer.rect.height;// - rectTransform.rect.height;
+        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0f);
+    }
+
     void OpenDialog(GameObject caller, Dialog dialog)
     {
         currentDialog = dialog;
@@ -91,6 +100,8 @@ public class DialogsSystem : MonoBehaviour
             RectTransform rectTransform = buttonObj.GetComponent<RectTransform>();
             rectTransform.localScale = Vector3.one;
         }
+        
+        UpdateDialogPos();
         
         SmoothCamera.instance.SetTarget(caller.transform);
     }
