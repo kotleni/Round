@@ -9455,7 +9455,6 @@ GameObject:
   - component: {fileID: 1402056832}
   - component: {fileID: 1402056831}
   - component: {fileID: 1402056835}
-  - component: {fileID: 1402056836}
   - component: {fileID: 1402056837}
   m_Layer: 3
   m_Name: Player
@@ -9620,18 +9619,6 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   levelBounds: {fileID: 1624751489}
   _particleSystem: {fileID: 455969125}
---- !u!114 &1402056836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402056830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c86e866946fd49dcbc9a9935aebc74a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1402056837
 Animator:
   serializedVersion: 5
@@ -10017,7 +10004,6 @@ GameObject:
   - component: {fileID: 1507197699}
   - component: {fileID: 1507197698}
   - component: {fileID: 1507197701}
-  - component: {fileID: 1507197700}
   - component: {fileID: 1507197702}
   m_Layer: 5
   m_Name: Right
@@ -10083,18 +10069,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507197696}
   m_CullTransparentMesh: 1
---- !u!114 &1507197700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507197696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a60b9defc0989604bb8e292532695f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1507197701
 MonoBehaviour:
   m_ObjectHideFlags: 0
