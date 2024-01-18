@@ -44,24 +44,39 @@ public class DialogsSystem : MonoBehaviour
                 Action<Dialog> callback = dialog =>
                 {
                     CloseDialog();
-                    OpenDialogByName(caller, "frog_where");
+                    OpenDialogByName(caller, "frog_second");
                 };
                 dialog = new Dialog(
                     "Denis a Frog", 
                     "Hello! How did you end up here? Ah... it doesn't matter.", 
                     new []
                     {
+                        new DialogButton("Hello. Where i am?", callback), 
                         new DialogButton("Where i am?.", callback), 
-                        new DialogButton("Bye.", defaultCallback), 
+                    });
+                break;
+            case "frog_second":
+                Action<Dialog> callback3 = dialog =>
+                {
+                    CloseDialog();
+                    OpenDialogByName(caller, "frog_where");
+                };
+                dialog = new Dialog(
+                    "Denis a Frog", 
+                    "You are on our island... I see, you have a sword. You can kill slimes?", 
+                    new []
+                    {
+                        new DialogButton("Yes.", callback3),
+                        new DialogButton("Okay, i can.", callback3), 
                     });
                 break;
             case "frog_where":
                 dialog = new Dialog(
                     "Denis a Frog", 
-                    "You are on our island.", 
+                    "Just go straight... And you'll find them.", 
                     new []
                     {
-                        new DialogButton("Okay...", defaultCallback), 
+                        new DialogButton("Ok", defaultCallback), 
                     });
                 break;
             case "slime_hello":
