@@ -7,6 +7,8 @@ public abstract class Entity : MonoBehaviour
     {
         IDLE, RUN, JUMP, SWIM    
     }
+
+    [SerializeField] private bool _isLockRotation;
     
     private float _maxSpeed = 3.0f;
     private float _jumpSpeed = 5.0f;
@@ -48,6 +50,10 @@ public abstract class Entity : MonoBehaviour
     private void Update()
     {
         OnUpdate();
+
+        // Reset rotation
+        if(_isLockRotation)
+            transform.Rotate(Vector3.zero);
     }
 
     private void OnGUI()

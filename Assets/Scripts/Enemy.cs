@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,6 +30,8 @@ public class Enemy : Entity
 
     protected override void OnUpdate()
     {
+        if(PlayerController.instance.GetHealth() <= 0) return;
+        
         Vector3 playerPos = PlayerController.instance.transform.position;
         float distance = Vector3.Distance(transform.position, playerPos);
         
@@ -55,5 +58,9 @@ public class Enemy : Entity
         {
             Jump();
         }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.DrawWireSphere(transform.position, visionDistance);
     }
 }
