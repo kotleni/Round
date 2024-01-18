@@ -73,21 +73,21 @@ public abstract class Entity : MonoBehaviour
         GUI.DrawTexture(new Rect(xPos, yPos, barWidth * healthBarFill, barHeight), Texture2D.whiteTexture, ScaleMode.StretchToFill, false);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if(enemy == null) return;
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.gameObject.CompareTag("Enemy"))
+    //     {
+    //         Enemy enemy = other.gameObject.GetComponent<Enemy>();
+    //         if(enemy == null) return;
 
-            float damage = 25f;
-            float damageVelocity = 6.1f;
-            if (_rigidbody.velocity.magnitude >= damageVelocity)
-            {
-                enemy.Hit(damage, gameObject);
-            }
-        }
-    }
+    //         float damage = 25f;
+    //         float damageVelocity = 6.1f;
+    //         if (_rigidbody.velocity.magnitude >= damageVelocity)
+    //         {
+    //             enemy.Hit(damage, gameObject);
+    //         }
+    //     }
+    // }
 
     private bool CheckIsDamageAnimation()
     {

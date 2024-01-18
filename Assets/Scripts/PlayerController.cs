@@ -11,6 +11,11 @@ public class PlayerController : Entity
     [SerializeField] private Collider2D levelBounds;
     [SerializeField] private ParticleSystem _particleSystem;
     
+    [SerializeField] private GameObject _hand;
+    [SerializeField] private BoxCollider2D _activationCollider;
+
+    private bool _isAttacking = false;
+
     private float forceMove = 0f;
 
     public PlayerController()
@@ -56,6 +61,10 @@ public class PlayerController : Entity
             state = State.JUMP;
         }
 
+        if(Input.GetKeyDown(KeyCode.E)) {
+            ControlAttack();
+        }
+
         // if (state == State.RUN)
         // {
         //     if (!_particleSystem.isPlaying)
@@ -71,6 +80,7 @@ public class PlayerController : Entity
         //     }
         // }
         
+        //if(!_isAttacking)
         UpdateState(state);
 
         if (!IsInDialog())
@@ -80,9 +90,38 @@ public class PlayerController : Entity
             if (Input.GetKeyDown(KeyCode.Space))
                 ControlJump();
         
-            if(Input.GetKeyDown(KeyCode.F))
-                ControlDash();
+            // if(Input.GetKeyDown(KeyCode.F))
+            //     ControlDash();
         }
+    }
+
+    private void ProcessAttack() {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(_activationCollider.bounds.center, _activationCollider.bounds.size, 0f);
+        foreach (var item in colliders)
+        {
+            if(item.gameObject.CompareTag("Enemy")) {
+                Enemy enemy = item.gameObject.GetComponent<Enemy>();
+                enemy.Hit(5, gameObject);
+            }
+        }
+    }
+
+    private IEnumerator StartAttack() {
+        if(_isAttacking) yield return null;
+
+        _isAttacking = true;
+
+        Animator anim = _hand.GetComponentInChildren<Animator>();
+        anim.StartPlayback();
+        _hand.SetActive(true);
+
+        yield return new WaitForSeconds(0.3f);
+        ProcessAttack();
+
+        yield return new WaitForSeconds(0.4f);
+        _hand.SetActive(false);
+
+        _isAttacking = false;
     }
 
     public bool IsInDialog()
@@ -117,6 +156,12 @@ public class PlayerController : Entity
     public void ControlMovementRelease()
     {
         forceMove = 0f;
+    }
+
+    public void ControlAttack() {
+        if (IsInDialog()) return;
+
+        StartCoroutine(StartAttack());
     }
     
     public void ControlDash()
