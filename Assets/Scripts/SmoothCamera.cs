@@ -11,6 +11,7 @@ public class SmoothCamera : MonoBehaviour
 
     private Transform target;
     private Camera mainCamera;
+    private bool _isReTargered = false;
 
     public static SmoothCamera instance;
 
@@ -98,13 +99,19 @@ public class SmoothCamera : MonoBehaviour
     public void SetTarget(Transform targetTransform)
     {
         target = targetTransform;
+        _isReTargered = true;
     }
 
     public void ResetTarget()
     {
         target = originalTarget;
+        _isReTargered = false;
     }
     
+    public bool IsReTargered() {
+        return _isReTargered;
+    }
+
     void OnDrawGizmos()
     {
         if (cameraBounds != null)

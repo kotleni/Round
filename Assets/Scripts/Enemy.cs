@@ -31,7 +31,7 @@ public class Enemy : Entity
     protected override void OnUpdate()
     {
         if(PlayerController.instance.GetHealth() <= 0) return;
-        
+
         Vector3 playerPos = PlayerController.instance.transform.position;
         float distance = Vector3.Distance(transform.position, playerPos);
         

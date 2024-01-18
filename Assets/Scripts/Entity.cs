@@ -16,6 +16,8 @@ public abstract class Entity : MonoBehaviour
     private float _maxHealth = 1f;
     private float _health = 1f;
 
+    private bool _isAllowAirJump = false;
+
     private float lastJumpTime = 0f;
     private float jumpDelay = 1.0f;
     
@@ -45,15 +47,13 @@ public abstract class Entity : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         initialScale = transform.localScale;
         OnInit();
+
+        _rigidbody.freezeRotation = _isLockRotation;
     }
 
     private void Update()
     {
         OnUpdate();
-
-        // Reset rotation
-        if(_isLockRotation)
-            transform.Rotate(Vector3.zero);
     }
 
     private void OnGUI()
@@ -193,6 +193,14 @@ public abstract class Entity : MonoBehaviour
         _isDrawXFlipped = isFlipped;
     }
 
+    public void SetAllowAirJump(bool isAllow) {
+        _isAllowAirJump = isAllow;
+    }
+
+    public void SetJumpDelay(float delay) {
+        jumpDelay = delay;
+    }
+
     public void SetHealth(float value)
     {
         _health = Math.Min(value, _maxHealth);
@@ -253,7 +261,7 @@ public abstract class Entity : MonoBehaviour
 
     public void Jump()
     {
-        if (Time.time - lastJumpTime > jumpDelay)
+        if ((IsGrounded() || _isAllowAirJump) && Time.time - lastJumpTime > jumpDelay)
         {
             _rigidbody.velocity += new Vector2(0f, _jumpSpeed);
             lastJumpTime = Time.time;
