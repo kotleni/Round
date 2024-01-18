@@ -76073,7 +76073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efe2c68a9078f349aba98dccd202ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyancy: 4
+  buoyancy: 3
 --- !u!61 &1923447255
 BoxCollider2D:
   m_ObjectHideFlags: 0
