@@ -109,7 +109,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 8400000, guid: 6f0136cae2360c1ecb814ae00c489981, type: 2}
+        m_Texture: {fileID: 2800000, guid: 1823e138bc0b8c0dea028e5d6689c086, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _VertexDisplacementTex:
@@ -195,6 +195,8 @@ Material:
     - _VertexDisplacement: 0
     - _VertexDisplacementAmountDivider: 60
     - _VertexDisplacementSpeedDivider: 40
+    - _WaterWavesSpeed: 0.003
+    - _WaterWavesValue: 1.38
     - _WaveAmp: 0.5
     - _WaveDistance: 0.16
     - _WaveLerp: 1

@@ -122890,8 +122890,8 @@ MonoBehaviour:
   interactHorizontalMultiplier: 1
   layersToInteract:
     serializedVersion: 2
-    m_Bits: 0
-  waveUpdateLoop: 0
+    m_Bits: 4294967295
+  waveUpdateLoop: 1
   decay: 0.998
 --- !u!4 &1931534179 stripped
 Transform:
