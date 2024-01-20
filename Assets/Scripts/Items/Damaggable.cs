@@ -9,11 +9,18 @@ public class Damaggable : MonoBehaviour
     [Range(1f, 9999f)] 
     [SerializeField] 
     private float damage;
-
+    
+    private float _lastDmgTime;
+    private const float DmgDelay = 0.7f;
     private void MakeDamage(GameObject gameObject)
     {
         if (gameObject.CompareTag("Player"))
         {
+            if(Time.time - _lastDmgTime < DmgDelay)
+            return;
+
+            _lastDmgTime = Time.time;
+
             PlayerController pl = gameObject.GetComponent<PlayerController>();
             pl.Hit(damage, gameObject);
         }
@@ -24,7 +31,17 @@ public class Damaggable : MonoBehaviour
         MakeDamage(other.gameObject);
     }
 
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        MakeDamage(other.gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
+    {
+        MakeDamage(other.gameObject);
+    }
+
+     private void OnTriggerStay2D(Collider2D other)
     {
         MakeDamage(other.gameObject);
     }
