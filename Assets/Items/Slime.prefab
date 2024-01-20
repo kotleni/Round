@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6afa2242c9422a90a3c2e148ded7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isLockRotation: 1
   isTurnRight: 1
   _rigidbody: {fileID: 0}
   visionDistance: 6
