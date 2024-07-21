@@ -40,6 +40,19 @@ public class DialogsSystem : MonoBehaviour
         Dialog dialog = null;
         switch (name)
         {
+            case "beta_warning":
+                Action<Dialog> callback4 = dialog =>
+                {
+                    CloseDialog();
+                };
+                dialog = new Dialog(
+                    "Developer",
+                    "Sorry, but this game is still be in early development. Story is not implemented fully yet.",
+                    new[]
+                    {
+                        new DialogButton("Bye.", callback4),
+                    });
+                break;
             case "frog_hello":
                 Action<Dialog> callback = dialog =>
                 {
