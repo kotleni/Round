@@ -11,8 +11,14 @@ public class Enemy : Entity
     [SerializeField] private float swimSpeed = 9.0f;
     [SerializeField] private float maxHealth = 45f;
     [SerializeField] private bool isFlipX = false;
+    [SerializeField] private string id = "";
     
     private float moveTo = 0f;
+
+    public string GetId()
+    {
+        return id;
+    }
 
     protected override void OnInit()
     {

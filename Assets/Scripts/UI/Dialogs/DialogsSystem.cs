@@ -40,17 +40,17 @@ public class DialogsSystem : MonoBehaviour
         Dialog dialog = null;
         switch (name)
         {
-            case "beta_warning":
+            case "frog_afterslimes":
                 Action<Dialog> callback4 = dialog =>
                 {
                     CloseDialog();
                 };
                 dialog = new Dialog(
-                    "Developer",
-                    "Sorry, but this game is still be in early development. Story is not implemented fully yet.",
+                    "Denis a Frog",
+                    "Wow, thanks! All of the slimes is died, now people can go to our castle to live here!",
                     new[]
                     {
-                        new DialogButton("Bye.", callback4),
+                        new DialogButton("Glad to hear. (Not impl)", callback4),
                     });
                 break;
             case "frog_hello":
@@ -99,6 +99,33 @@ public class DialogsSystem : MonoBehaviour
                     new []
                     {
                         new DialogButton("Oh...", defaultCallback), 
+                    });
+                break;
+            case "tikiboy_boxeswarn":
+                Action<Dialog> callback5 = dialog =>
+                {
+                    CloseDialog();
+                };
+                dialog = new Dialog(
+                    "Tiki a boy",
+                    "Hey! Be carefull with our boxes, please.",
+                    new[]
+                    {
+                        new DialogButton("Okay", callback5),
+                    });
+                break;
+            case "tikiboy_drownedboxes":
+                Action<Dialog> callback6 = dialog =>
+                {
+                    CloseDialog();
+                };
+                dialog = new Dialog(
+                    "Tiki a boy",
+                    "Oh no! Our boxes i drowned...",
+                    new[]
+                    {
+                        new DialogButton("Sorry", callback6),
+                        new DialogButton("*just leave*", callback6),
                     });
                 break;
         }
