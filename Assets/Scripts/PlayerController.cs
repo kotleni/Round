@@ -87,11 +87,11 @@ public class PlayerController : Entity
         {
             MoveHorizontal(forceMove == 0f ? Input.GetAxis("Horizontal") : forceMove);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0))
                 ControlJump();
         
-            // if(Input.GetKeyDown(KeyCode.F))
-            //     ControlDash();
+            if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Joystick1Button1))
+                 ControlDash();
         }
     }
 
