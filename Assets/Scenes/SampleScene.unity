@@ -8589,7 +8589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &972381156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118427,6 +118427,7 @@ GameObject:
   - component: {fileID: 1923447256}
   - component: {fileID: 1923447259}
   - component: {fileID: 1923447258}
+  - component: {fileID: 1923447260}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -118609,6 +118610,18 @@ MonoBehaviour:
     m_Bits: 4294967295
   waveUpdateLoop: 1
   decay: 0.998
+--- !u!114 &1923447260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923447251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa366682c49bc4127ae72a60071a9125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1931534179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7566406185853535418, guid: 883c761d5ceee56439d14b4c57dd0341, type: 3}
@@ -119485,6 +119498,10 @@ PrefabInstance:
     - target: {fileID: 1594346369961138266, guid: 26f7c5146737a2944b7c85211a446b9e, type: 3}
       propertyPath: m_Name
       value: Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594346369961138266, guid: 26f7c5146737a2944b7c85211a446b9e, type: 3}
+      propertyPath: m_TagString
+      value: VillagersBox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

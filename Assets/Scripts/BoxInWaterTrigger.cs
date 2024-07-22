@@ -16,6 +16,9 @@ public class BoxInWaterTrigger : MonoBehaviour
             {
                 DialogsSystem.instance.OpenDialogByName(tikiNpc.gameObject, "tikiboy_drownedboxes");
             }
+
+            // Made it looks dry
+            other.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
         }
     }
 }
