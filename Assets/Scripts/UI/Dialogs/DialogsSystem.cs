@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class DialogsSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogText;
     [SerializeField] private GameObject dialogContainer;
     [SerializeField] private GameObject dialogButtonRef;
+
+    private static List<string> activatedDialogs = new List<string>();
 
     private Dialog currentDialog = null;
     private List<GameObject> createdButtons = new List<GameObject>();
@@ -35,8 +38,39 @@ public class DialogsSystem : MonoBehaviour
         CloseDialog();
     }
 
-    public void OpenDialogByName(GameObject caller, string name)
+    /// <summary>
+    /// Check is all enemies by id is die by foreaching all entities
+    /// </summary>
+    /// <returns>True if no any enemies here.</returns>
+    private bool IsAllEnemiesKindDie(string enemyId)
     {
+        var enemies = GameObject.FindSceneObjectsOfType(typeof(Enemy));
+        foreach (Enemy enemy in enemies)
+        {
+            if (enemy.GetId() == enemyId) return false;
+        }
+        return true;
+    }
+
+    public void OpenDialogByName(GameObject caller, string name, TriggerRule rule = TriggerRule.DEFAULT)
+    {
+        if (activatedDialogs.Contains(name))
+        {
+            return; // Already invoked before
+        }
+
+        switch (rule)
+        {
+            case TriggerRule.SLIMES_KILLED:
+                if (!IsAllEnemiesKindDie("slime")) return; // Return if has slimes
+                break;
+            case TriggerRule.BOXES_DROWNED:
+                if (!BoxInWaterTrigger.isDrowned) return;
+                break;
+        }
+
+        activatedDialogs.Add(name);
+
         Dialog dialog = null;
         switch (name)
         {
